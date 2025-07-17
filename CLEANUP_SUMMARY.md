@@ -6,7 +6,7 @@
 - ✅ **Maven Target Directories**: Removed `target/` folders from all modules
 - ✅ **Duplicate Documentation**: Removed duplicate `ARCHITECTURE.md` from root
 - ✅ **Outdated Verification**: Removed `docs/VERIFICATION.md` (outdated)
-- ✅ **Kafka Connect Configs**: Removed `kafka-connect-configs/` directory
+- ✅ **Kafka Connect Plugins**: Removed `kafka-connect-plugins/` directory completely
 
 ### **2. Docker Cleanup**
 - ✅ **Docker System Prune**: Removed unused volumes and containers (1.915GB freed)
@@ -21,9 +21,15 @@
 ### **4. Project Structure Optimization**
 - ✅ **Consolidated Documentation**: Moved all docs to root directory
 - ✅ **Removed Empty Directories**: Cleaned up `docs/` folder
-- ✅ **Updated .gitignore**: Added kafka-connect-plugins and logs to ignore list
+- ✅ **Updated .gitignore**: Updated to reflect proper Docker plugin handling
 
-### **5. Final Project Structure**
+### **5. Kafka Connect Plugin Management**
+- ✅ **Removed Local Plugin Directory**: No more `kafka-connect-plugins/` in repository
+- ✅ **Docker-based Plugin Installation**: Created custom Dockerfile for kafka-connect
+- ✅ **Proper Plugin Handling**: Plugins now installed during Docker build process
+- ✅ **No Volume Mapping**: Removed unnecessary volume mapping from docker-compose
+
+### **6. Final Project Structure**
 ```
 fintopia-kafka-assignment/
 ├── 📄 docker-compose.yml           # Optimized with health checks
@@ -34,7 +40,8 @@ fintopia-kafka-assignment/
 ├── 📄 ARCHITECTURE.md              # Mermaid architecture diagrams
 ├── 📄 FINAL_SUMMARY.md             # Complete implementation summary
 ├── 📄 CLEANUP_SUMMARY.md           # This cleanup summary
-├── 📄 .gitignore                   # Updated with plugins exclusion
+├── 📄 .gitignore                   # Updated for clean repository
+├── 📂 kafka-connect/               # Custom Dockerfile for plugins
 ├── 📂 order-producer/              # Clean REST API service
 ├── 📂 order-consumer/              # Clean Kafka consumer service
 └── 📂 kafka-streams/               # Clean stream processing service

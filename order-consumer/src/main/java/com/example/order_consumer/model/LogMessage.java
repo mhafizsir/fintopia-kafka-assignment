@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LogMessage {
     private Instant timestamp;
-    private String service;
+    private String service_name;
     private String status;
-    private String errorMessage;
+    private String error_message;
 }

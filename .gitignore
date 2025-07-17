@@ -32,8 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
-# Kafka Connect plugins (downloaded during container build)
-kafka-connect-plugins/
+# Kafka Connect plugins are installed directly in Docker container
 
 # Logs
 *.log
