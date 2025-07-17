@@ -18,22 +18,19 @@ public class OrderController {
 
     @PostMapping("/order")
     public String sendOrder(@RequestBody Order order) {
-        if (order.getOrderId() == null) {
-            order.setOrderId(UUID.randomUUID().toString());
-        }
-        if (order.getOrderTime() == null) {
-            order.setOrderTime(LocalDateTime.now());
-        }
-        if (order.getStatus() == null) {
-            order.setStatus("PENDING");
-        }
-
+        processOrder(order);
         kafkaProducerService.sendOrder(order);
         return "Order received!";
     }
 
     @PostMapping("/api/orders")
     public ResponseEntity<String> createOrder(@RequestBody Order order) {
+        processOrder(order);
+        kafkaProducerService.sendOrder(order);
+        return ResponseEntity.ok("Order sent successfully with ID: " + order.getOrderId());
+    }
+
+    private void processOrder(Order order) {
         if (order.getOrderId() == null) {
             order.setOrderId(UUID.randomUUID().toString());
         }
@@ -43,23 +40,21 @@ public class OrderController {
         if (order.getStatus() == null) {
             order.setStatus("PENDING");
         }
-
-        kafkaProducerService.sendOrder(order);
-        return ResponseEntity.ok("Order sent successfully with ID: " + order.getOrderId());
     }
 
     @PostMapping("/api/orders/sample")
     public ResponseEntity<String> createSampleOrder() {
         Order order = new Order(
-            UUID.randomUUID().toString(),
+            null,
             "customer-123",
             "product-456",
             2,
             new BigDecimal("29.99"),
-            LocalDateTime.now(),
-            "PENDING"
+            null,
+            null
         );
 
+        processOrder(order);
         kafkaProducerService.sendOrder(order);
         return ResponseEntity.ok("Sample order created with ID: " + order.getOrderId());
     }

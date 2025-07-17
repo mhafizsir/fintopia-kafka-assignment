@@ -13,11 +13,13 @@ import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.kstream.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.annotation.EnableKafkaStreams;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @Slf4j
+@EnableKafkaStreams
 public class StreamsConfig {
 
     @Bean

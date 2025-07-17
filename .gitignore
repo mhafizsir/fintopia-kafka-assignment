@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Kafka Connect plugins (downloaded during container build)
+kafka-connect-plugins/
+
+# Logs
+*.log
+logs/

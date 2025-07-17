@@ -15,6 +15,9 @@ public class OrderSerdes implements Serde<Order> {
 
     @Override
     public Deserializer<Order> deserializer() {
-        return new JsonDeserializer<>(Order.class);
+        JsonDeserializer<Order> deserializer = new JsonDeserializer<>(Order.class);
+        deserializer.addTrustedPackages("*");
+        deserializer.setUseTypeHeaders(false);
+        return deserializer;
     }
 }
